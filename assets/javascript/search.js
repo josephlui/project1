@@ -48,7 +48,7 @@ function parseResponse(json){
             `<img class="card-img-top" src="${imgURL}" alt="${name}" width="254" height="254">` +
             '<div class="card-body">'+
             `<h5 class="card-title">${name}</h5>` +
-            `<a href="#" class="btn btn-primary btnItem" id="${itemId}">Save Item</a>` +
+            `<a href="#" class="btn btn-primary btnItem" id="${itemId}"></a>` +
             '</div>'+
             '</div></div>';
     }
