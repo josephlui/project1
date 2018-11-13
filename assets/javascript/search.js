@@ -15,13 +15,24 @@ var start;
 var numItems = 15; //Number of items to display for each call
 var totalResults;
 var searchItem = '';
-
+var user = JSON.parse(localStorage.getItem("user"));
 $("button").on('click',function(e){
     e.preventDefault();
     start = 1;
     $('.row').empty();
     searchItem =  $('#search_box').val();
     searchCatalog(searchItem);
+});
+
+$( document ).ready(function() {
+  if(window.location.href.includes('saved-page')) {
+    var itemIds = '';
+    for (var itemId in user.subscriptions) {
+      itemIds += user.subscriptions[itemId] + ',';
+    }
+    itemIds = itemIds.substring(0,itemIds.length-1);
+    findItems(itemIds);
+  }
 });
 
 // Callback function to interpret the JSON response from search api
@@ -35,7 +46,6 @@ function parseResponse(json){
     var shortDesc = '';
     var stock = '';
     var name = '';
-    var user = JSON.parse(localStorage.getItem("user"));
     for (var i = 0; i < json.items.length; i++){
         itemId = json.items[i].itemId;
         imgURL = json.items[i].largeImage;
@@ -62,7 +72,7 @@ function parseResponse(json){
     }
 }
 
-function searchCatalog (category){
+function searchCatalog (category, overrideUrl){
 
     // Walmart domain
     var domain = 'http://api.walmartlabs.com/v1/search';
@@ -72,6 +82,26 @@ function searchCatalog (category){
 
     // API URL
     var url = `${domain}?apiKey=${apiKey}&query=${category}&start=${start}&numItems=${numItems}`;
+
+    // JSONP call to retrieve product details
+    $.ajax({
+        url: url,
+        dataType: "jsonp",
+        jsonpCallback: "parseResponse",
+    });
+
+}
+
+function findItems (itemIds){
+
+    // Walmart domain
+    var domain = 'http://api.walmartlabs.com/v1/items';
+
+    // API Key
+    var apiKey = 'jjntmj9urbkey38nbuy2kztk';
+
+    // API URL
+    var url = `${domain}?apiKey=${apiKey}&ids=${itemIds}`;
 
     // JSONP call to retrieve product details
     $.ajax({
