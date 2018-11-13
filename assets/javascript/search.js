@@ -32,6 +32,10 @@ $( document ).ready(function() {
     }
     itemIds = itemIds.substring(0,itemIds.length-1);
     findItems(itemIds);
+  } else if(window.location.href.includes('profile-page')) {
+    var userEmail = user.email;
+    var row  = `<div class="col"><span class="font-weight-bold">Email:&nbsp;</span>${userEmail}</div>`;
+    $('.row').append(row);
   }
 });
 
