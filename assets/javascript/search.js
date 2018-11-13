@@ -1,6 +1,7 @@
-const maxContentLength = 55;
+const maxContentLength = 50;
 
 // Register on click event listen for the product search button
+
 $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
           if (start * numItems < totalResults) {
@@ -37,6 +38,29 @@ $( document ).ready(function() {
     var row  = `<div class="col"><span class="font-weight-bold">Email:&nbsp;</span>${userEmail}</div>`;
     $('.row').append(row);
   }
+
+});
+
+// register button click to track save items
+$(document.body).on('click', '.btnItem' ,function(event){
+    event.preventDefault();
+    console.log($(this).attr('id'));
+});
+
+// register button click to track save item on modal window
+$(document.body).on('click', '.modalTrack' ,function(event){
+    event.preventDefault();
+    subscribeItem('my email???', $(this).attr('data-item'));
+    console.log($(this).attr('data-item'));
+    $('#detailModal').modal('hide')
+});
+
+// register listener on image click
+$(document.body).on('click', '.open-Modal' ,function(event){
+    event.preventDefault();
+    var id = $(this).attr('item-type');
+    var jsonText = $(this).attr('item-data');
+    $('#modalLabel').text(`Item ID: ${id}`);
 });
 
 // Callback function to interpret the JSON response from search api
@@ -50,6 +74,9 @@ function parseResponse(json){
     var shortDesc = '';
     var stock = '';
     var name = '';
+    var row = '';
+    $('.gridContainer').empty();
+    row = '<div class="row">';
     for (var i = 0; i < json.items.length; i++){
         itemId = json.items[i].itemId;
         imgURL = json.items[i].largeImage;
