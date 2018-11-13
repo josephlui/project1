@@ -1,12 +1,34 @@
-const maxContentLength = 55;
+const maxContentLength = 50;
 
 // Register on click event listen for the product search button
-
 $("button").on('click',function(e){
     e.preventDefault();
     var searchItem =  $('#search_box').val();
-    searchCatalog(searchItem);
+    if (searchItem)
+        searchCatalog(searchItem);
     
+});
+
+// register button click to track save items
+$(document.body).on('click', '.btnItem' ,function(event){
+    event.preventDefault();
+    console.log($(this).attr('id'));
+});
+
+// register button click to track save item on modal window
+$(document.body).on('click', '.modalTrack' ,function(event){
+    event.preventDefault();
+    subscribeItem('my email???', $(this).attr('data-item'));
+    console.log($(this).attr('data-item'));
+    $('#detailModal').modal('hide')
+});
+
+// register listener on image click
+$(document.body).on('click', '.open-Modal' ,function(event){
+    event.preventDefault();
+    var id = $(this).attr('item-type');
+    var jsonText = $(this).attr('item-data');
+    $('#modalLabel').text(`Item ID: ${id}`);
 });
 
 // Callback function to interpret the JSON response from search api
@@ -19,9 +41,8 @@ function parseResponse(json){
     var shortDesc = '';
     var stock = '';
     var name = '';
-
     var row = '';
-
+    $('.gridContainer').empty();
     row = '<div class="row">';
     for (var i = 0; i < json.items.length; i++){
 
@@ -32,18 +53,18 @@ function parseResponse(json){
         shortDesc = json.items[i].shortDescription;
         stock = json.items[i].stock;
         name = json.items[i].name;
-        
-      
+
         if (name.length > maxContentLength){
             name = name.substring(0,maxContentLength) + '...';
         }
    
-        row  += '<div class="col col-lg-3 col-md-4" >' +
-            '<div class="card" style="width: 16rem;">'+
-            `<img class="card-img-top" src="${imgURL}" alt="${name}" width="254" height="254">` +
+        row  += '<div class="col col-lg-3 col-md-4 custCol" >' +
+            '<div class="card" style="width: 15rem;">'+
+            `<img class="card-img-top open-Modal" src="${imgURL}" alt="${name}" item-type="${itemId}" width="254" height="254" data-toggle="modal" data-target="#detailModal"'>` +
             '<div class="card-body">'+
             `<h5 class="card-title">${name}</h5>` +
-            '<a href="#" class="btn btn-primary">Save Item</a>' +
+            `<p class="card-text">MSRP: ${msrp} <br/> Sale Price: ${salePrice}</p><br/>` +
+            `<a href="#" class="btn btn-primary btnItem" id="${itemId}">Save Item</a>` +
             '</div>'+
             '</div></div>';
     }
