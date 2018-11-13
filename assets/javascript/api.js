@@ -55,23 +55,23 @@ function retrieveUser(userEmail) {
 
 //Subscribe the user to this Item in Firebase
 function subscribeItem(item) {
-    var storedUser = JSON.parse(localStorage.getItem("user"));
+    var user = JSON.parse(localStorage.getItem("user"));
     var itemStatus = $(item).attr('item-status');
     var itemId = $(item).attr('id');
     if(itemStatus === 'unsubscribed') {
       $(item).attr('item-status', 'subscribed');
       $(item).html('Remove Item');
-      storedUser.subscriptions.push(itemId);
+      user.subscriptions.push(itemId);
     } else {
       $(item).attr('item-status', 'unsubscribed');
       $(item).html('Save Item');
-      while(storedUser.subscriptions.indexOf(itemId) >= 0) {
-        storedUser.subscriptions.splice(storedUser.subscriptions.indexOf(itemId), 1);
+      while(user.subscriptions.indexOf(itemId) >= 0) {
+        user.subscriptions.splice(user.subscriptions.indexOf(itemId), 1);
       }
     }
-    var cleanEmail = storedUser.email.replace(/\./g, ',').toLowerCase();
-    database.ref(cleanEmail).set(storedUser);
-    localStorage.setItem("user", JSON.stringify(storedUser));
+    var cleanEmail = user.email.replace(/\./g, ',').toLowerCase();
+    database.ref(cleanEmail).set(user);
+    localStorage.setItem("user", JSON.stringify(user));
 }
 
 //Search the walmart api for this item and return a list of items

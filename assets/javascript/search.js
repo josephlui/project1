@@ -19,9 +19,9 @@ var searchItem = '';
 $("button").on('click',function(e){
     e.preventDefault();
     start = 1;
+    $('.row').empty();
     searchItem =  $('#search_box').val();
     searchCatalog(searchItem);
-
 });
 
 // Callback function to interpret the JSON response from search api
@@ -35,7 +35,7 @@ function parseResponse(json){
     var shortDesc = '';
     var stock = '';
     var name = '';
-
+    var user = JSON.parse(localStorage.getItem("user"));
     for (var i = 0; i < json.items.length; i++){
         itemId = json.items[i].itemId;
         imgURL = json.items[i].largeImage;
@@ -51,10 +51,13 @@ function parseResponse(json){
             '<div class="card" style="width: 16rem;">'+
             `<img class="card-img-top" src="${imgURL}" alt="${name}" width="254" height="254">` +
             '<div class="card-body">'+
-            `<h5 class="card-title">${name}</h5>` +
-            `<a href="#" class="btn btn-primary" id="${itemId}" item-status="unsubscribed" onclick="subscribeItem(this);">Save Item</a>` +
-            '</div>'+
-            '</div></div>';
+            `<h5 class="card-title">${name}</h5>`;
+        if(user.subscriptions.indexOf(itemId.toString()) >= 0) {
+          row += `<a href="#" class="btn btn-primary" id="${itemId}" item-status="subscribed" onclick="subscribeItem(this);">Remove Item</a>`;
+        } else {
+          row += `<a href="#" class="btn btn-primary" id="${itemId}" item-status="unsubscribed" onclick="subscribeItem(this);">Save Item</a>`;
+        }
+        row += '</div></div></div>';
         $('.row').append(row);
     }
 }
