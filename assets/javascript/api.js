@@ -12,7 +12,11 @@ var database = firebase.database();
 $("#registerButton").on("click", function(e) {
   e.preventDefault();
   var inputEmail =  $('#newUserEmail').val();
-  saveUser(inputEmail);
+  var user = {
+    email: inputEmail,
+    subscriptions: [],
+  };
+  saveUser(user);
 });
 
 $("#loginButton").on("click", function(e) {
@@ -22,14 +26,11 @@ $("#loginButton").on("click", function(e) {
 });
 
 //Save the user to Firebase
-function saveUser(userEmail) {
-    var cleanEmail = userEmail.replace(/\./g, ',').toLowerCase();
-    var newUser = {
-      email: userEmail,
-    };
-    database.ref(cleanEmail).set(newUser);
+function saveUser(user) {
+    var cleanEmail = user.email.replace(/\./g, ',').toLowerCase();
+    database.ref(cleanEmail).set(user);
     localStorage.clear();
-    localStorage.setItem("user", JSON.stringify(newUser));
+    localStorage.setItem("user", JSON.stringify(user));
     window.location.href = './search-page.html';
 }
 
@@ -40,7 +41,7 @@ function retrieveUser(userEmail) {
       if(user.val()) {
         var existingUser = {
             email: user.val().email,
-            subscriptions: user.val().subscriptions,
+            subscriptions: user.val().subscriptions || [],
         };
         localStorage.clear();
         localStorage.setItem("user", JSON.stringify(existingUser));
@@ -53,13 +54,24 @@ function retrieveUser(userEmail) {
 }
 
 //Subscribe the user to this Item in Firebase
-function subscribeItem(userId, itemId) {
-
-}
-
-//Unsubscribe the user from this item in Firebase
-function unsubscribeItem(userId, itemId) {
-
+function subscribeItem(item) {
+    var storedUser = JSON.parse(localStorage.getItem("user"));
+    var itemStatus = $(item).attr('item-status');
+    var itemId = $(item).attr('id');
+    if(itemStatus === 'unsubscribed') {
+      $(item).attr('item-status', 'subscribed');
+      $(item).html('Remove Item');
+      storedUser.subscriptions.push(itemId);
+    } else {
+      $(item).attr('item-status', 'unsubscribed');
+      $(item).html('Save Item');
+      while(storedUser.subscriptions.indexOf(itemId) >= 0) {
+        storedUser.subscriptions.splice(storedUser.subscriptions.indexOf(itemId), 1);
+      }
+    }
+    var cleanEmail = storedUser.email.replace(/\./g, ',').toLowerCase();
+    database.ref(cleanEmail).set(storedUser);
+    localStorage.setItem("user", JSON.stringify(storedUser));
 }
 
 //Search the walmart api for this item and return a list of items
