@@ -5,7 +5,11 @@
 .gridContainer {
     padding-top: 10px;
 }
- 
-.jumbotron{
+
+.jumbotron {
     margin-bottom: 0px;
-} 
+}
+
+.col {
+  margin: 10px;
+}
