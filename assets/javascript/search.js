@@ -66,7 +66,6 @@ $(document.body).on('click', '.open-Modal' ,function(event){
 // Callback function to interpret the JSON response from search api
 function parseResponse(json){
     totalResults = json.totalResults;
-    numItems = json.numItems;
     var itemId = '';
     var imgURL = '';
     var msrp = '';
