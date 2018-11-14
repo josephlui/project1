@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Product Search Page</title>
+    <title>Welcome Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--jQuery Reference-->
@@ -26,31 +26,20 @@
 
     <!--Material Design Reference-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/css/mdb.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/js/mdb.min.js"></script>    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/js/mdb.min.js"></script>
 
     <!--CSS Reference-->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 
     <!--Firebase Reference-->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  
 </head>
 
-<body class="body">
+<body>
 
-        <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                  <h1 class="display-4">Price Tracker</h1>
-                  <p class="lead">An ultimate price tracking app...</p>
-                </div>
-        </div>
-
-        <!--Navbar-->
-        <nav class="mb-4 navbar navbar-expand-lg navbar-dark unique-color-dark">
+    <!--Navbar-->
+    <nav class="mb-4 navbar navbar-expand-lg navbar-dark unique-color-dark">
             <a class="navbar-brand" href="#"><i class="fas fa-search-dollar"></i>Smart Shoppers</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -73,16 +62,37 @@
                 </ul>
             </div>
         </nav>
-    <script type="text/javascript" src="./assets/javascript/search.js"></script>
 
     <!--Overall Grid-->
-    <div class="container gridContainer" >
-    
-  <!-- custom js-->
- 
-
-    
+    <div class="container">
+        <!--Registration Form-->
+        <div class="jumbotron">
+            <h1 class="text-center">Welcome, Smart Shoppers!</h1>
+            <h2 class="text-center">Registration</h2>
+          </div>
+          <hr/>
+            <!--Register-->
+            <div class="row">
+                <div class="col-md-12">
+                        <form role="form">
+                                <div class="form-group row">
+                                  <label for="name-input">Name:</label>
+                                  <input class="form-control" id="name-input" type="text">
+                                </div>
+                                <div class="form-group row">
+                                  <label for="email-input">Email:</label>
+                                  <input class="form-control" id="email-input" type="email">
+                                </div>
+                                <button class="btn btn-outline-danger btn-lg" id="add-user" type="submit">Submit</button>
+                        </form>
+                </div>
+            </div>
     </div>
+
+    <!--Api Javascript-->
+    <script src="./assets/javascript/api.js"></script>
+    <!--UI Javascript-->
+    <script src="./assets/javascript/ui.js"></script>
 
 </body>
 
