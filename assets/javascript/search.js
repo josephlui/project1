@@ -75,7 +75,7 @@ function parseResponse(json){
     var stock = '';
     var name = '';
     var row = '';
-    $('.gridContainer').empty();
+    $('.row').empty();
     row = '<div class="row">';
     for (var i = 0; i < json.items.length; i++){
         itemId = json.items[i].itemId;
@@ -104,7 +104,6 @@ function parseResponse(json){
 }
 
 function searchCatalog (category, overrideUrl){
-
     // Walmart domain
     var domain = 'http://api.walmartlabs.com/v1/search';
 
