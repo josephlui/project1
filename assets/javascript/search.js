@@ -105,7 +105,7 @@ function parseResponse(json){
 
 function searchCatalog (category, overrideUrl){
     // Walmart domain
-    var domain = 'http://api.walmartlabs.com/v1/search';
+    var domain = 'https://api.walmartlabs.com/v1/search';
 
     // API Key
     var apiKey = 'jjntmj9urbkey38nbuy2kztk';
@@ -125,7 +125,7 @@ function searchCatalog (category, overrideUrl){
 function findItems (itemIds){
 
     // Walmart domain
-    var domain = 'http://api.walmartlabs.com/v1/items';
+    var domain = 'https://api.walmartlabs.com/v1/items';
 
     // API Key
     var apiKey = 'jjntmj9urbkey38nbuy2kztk';
