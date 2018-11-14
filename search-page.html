@@ -24,6 +24,10 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
+    <!--Material Design Reference-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/js/mdb.min.js"></script>    
+
     <!--CSS Reference-->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
@@ -45,30 +49,38 @@
                 </div>
         </div>
 
+<<<<<<< HEAD
+        <!--Navbar-->
+        <nav class="mb-4 navbar navbar-expand-lg navbar-dark unique-color-dark">
+            <a class="navbar-brand" href="#"><i class="fas fa-search-dollar"></i>Smart Shoppers</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+=======
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
+>>>>>>> fcfc76f6ed4e92ac4dbbd8a2a35fbcbfa95c2536
                     <li class="nav-item active">
-                      <a class="nav-link" href="./search-page.html">Search<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="./search-page.html"><i class="fas fa-search"></i> Item Search <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./saved-page.html">Saved Items</a>
+                        <a class="nav-link" href="./saved-page.html"><i class="fa fa-heart"></i> My Items </a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./profile-page.html">Profile</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-address-card"></i> Account </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                            <a class="dropdown-item" href="./profile-page.html"><i class="fas fa-user-circle"></i> My Profile </a>
+                            <a class="dropdown-item" href="./index.html"><i class="fas fa-sign-in-alt"></i> Log In </a>
+                        </div>
                     </li>
-                    <!-- <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Disabled</a>
-                    </li> -->
-                    <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search_box">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search_submit">Search</button>
-                    </form>
-                  </ul>
-                </div>
+                </ul>
+            </div>
         </nav>
     <script type="text/javascript" src="./assets/javascript/api.js"></script>
     <script type="text/javascript" src="./assets/javascript/search.js"></script>
@@ -87,28 +99,28 @@
                     <div class="container-fluid">
                             <div class="row align-items-center">
                               <div class="col-lg-4">
-                              <!-- hard code this for testing-->
-                              <img id='productImage' src="" alt="some text" width="254" height="254" />
-
+                                    <!-- hard code this for testing-->
+                                    <img src="https://i5.walmartimages.com/asr/a7bda75c-8a9b-4b8b-a596-33bdc026f1cc_1.ed584e2f7443484f63bccbacf8bd6587.png?odnHeight=450&odnWidth=450&odnBg=FFFFFF" alt="some text" width="254" height="254" />
+                                
                               </div>
                               <div class="col-lg-8">
-                                  <h3>Product Id</h3>
-                                  <p id='productIdValue'/><br/>
-
+                                  <h3>Product Name</h3>
+                                  <p>some text</p>
+                               
                                   <h3>Description</h3>
-                                  <p id='productDescriptionValue'/><br/>
-
+                                  <p>some text</p>
+                               
                                   <h3>MSRP Price</h3>
-                                  <p id='productMSRPValue'/><br/>
-
+                                  <p>some text</p>
+                                  
                                   <h3>Sale Price</h3>
-                                  <p id='productPriceValue'/><br/>
-
+                                  <p>some text</p>
+                            
                                   <h3>Availability</h3>
-                                  <p id='productAvailabilityValue'/><br/>
+                                  <p>some text</p>
 
-                                  <h3>Some more detail<h3>
-                                  <p id='productDetailValue'/><br/>
+                                  <h3>Some more detail</h3>
+                                  <p>some text</p>
                                </div>
                             </div>
                     </div>
@@ -117,7 +129,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary modalTrack" data-item="item-ID1234">Save Item</button>
+              <button type="button" class="btn btn-primary modalTrack" data-item="item-ID1234">Track Item</button>
             </div>
           </div>
         </div>
@@ -125,7 +137,7 @@
 
     <!--Overall Grid-->
     <div class="container gridContainer" >
-        <div class="row" id='items'/>
+        <div class="row"/>
     </div>
 
 </body>

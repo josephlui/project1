@@ -24,6 +24,10 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
+    <!--Material Design Reference-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/js/mdb.min.js"></script>
+
     <!--CSS Reference-->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 
@@ -35,20 +39,25 @@
 <body>
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="mb-4 navbar navbar-expand-lg navbar-dark unique-color-dark">
+        <a class="navbar-brand" href="#"><i class="fas fa-search-dollar"></i>Smart Shoppers</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="./search-page.html">Search <span class="sr-only">(current)</span></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./search-page.html"><i class="fas fa-search"></i> Item Search <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./saved-page.html">Saved Items</a>
+                    <a class="nav-link" href="./saved-page.html"><i class="fa fa-heart"></i> My Items </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./profile-page.html">Profile</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-address-card"></i> Account </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="./profile-page.html"><i class="fas fa-user-circle"></i> My Profile </a>
+                        <a class="dropdown-item" href="./index.html"><i class="fas fa-sign-in-alt"></i> Log In </a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -56,7 +65,27 @@
 
     <!--Overall Grid-->
     <div class="container">
+        <!--Welcome Screen-->
+        
         <!--Sign In/Registration Form-->
+<<<<<<< HEAD
+        <div class="jumbotron">
+            <h1 class="text-center">Welcome, Smart Shoppers!</h1>
+          </div>
+        <div class="row">
+          <div class="col-md-12">
+              <p>Are you a first-time Smart Shopper?</p>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-outline-danger btn-lg" href="./register-page.html" role="button">Yes!</a>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-outline-success btn-lg" href="./login-page.html" role="button">No!</a>
+            </div>
+        </div>
+=======
         <form class="form-signin-register">
             <i class="fas fa-address-card"></i>
             <!--Sign In-->
@@ -70,6 +99,7 @@
             <input type="email" id="newUserEmail" class="form-control" placeholder="Email Address">
             <button class="btn btn-lg btn-danger btn-block" type="submit" id="registerButton">Register</button>
         </form>
+>>>>>>> fcfc76f6ed4e92ac4dbbd8a2a35fbcbfa95c2536
     </div>
 
     <!--Api Javascript-->

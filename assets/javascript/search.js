@@ -20,7 +20,7 @@ var user = JSON.parse(localStorage.getItem("user"));
 $("button").on('click',function(e){
     e.preventDefault();
     start = 1;
-    $('#items').empty();
+    $('.row').empty();
     searchItem =  $('#search_box').val();
     searchCatalog(searchItem);
 });
@@ -36,7 +36,7 @@ $( document ).ready(function() {
   } else if(window.location.href.includes('profile-page')) {
     var userEmail = user.email;
     var row  = `<div class="col"><span class="font-weight-bold">Email:&nbsp;</span>${userEmail}</div>`;
-    $('#user').append(row);
+    $('.row').append(row);
   }
 
 });
@@ -59,7 +59,8 @@ $(document.body).on('click', '.modalTrack' ,function(event){
 $(document.body).on('click', '.open-Modal' ,function(event){
     event.preventDefault();
     var id = $(this).attr('item-type');
-    showModalItem(id);
+    var jsonText = $(this).attr('item-data');
+    $('#modalLabel').text(`Item ID: ${id}`);
 });
 
 // Callback function to interpret the JSON response from search api
@@ -73,6 +74,7 @@ function parseResponse(json){
     var stock = '';
     var name = '';
     var row = '';
+    row = '<div class="row">';
     for (var i = 0; i < json.items.length; i++){
         itemId = json.items[i].itemId;
         imgURL = json.items[i].largeImage;
@@ -84,31 +86,18 @@ function parseResponse(json){
         if (name.length > maxContentLength){
             name = name.substring(0,maxContentLength) + '...';
         }
-        var row  = '<div class="col col-lg-3 col-md-4 custCol" >' +
-               '<div class="card" style="width: 15rem;">'+
-               `<img class="card-img-top open-Modal" src="${imgURL}" alt="${name}" item-type="${itemId}" width="254" height="254" data-toggle="modal" data-target="#detailModal"'>` +
-               '<div class="card-body">'+
-               `<h5 class="card-title">${name}</h5>` +
-               `<p class="card-text">MSRP: ${msrp} <br/> Sale Price: ${salePrice}</p><br/>`;
-               if(user.subscriptions.indexOf(itemId.toString()) >= 0) {
-                 row += `<a href="#" class="btn btn-primary" id="${itemId}" item-status="subscribed" onclick="subscribeItem(this);">Remove Item</a>`;
-               } else {
-                 row += `<a href="#" class="btn btn-primary" id="${itemId}" item-status="unsubscribed" onclick="subscribeItem(this);">Save Item</a>`;
-               }
-               '</div></div></div>';
-        $('#items').append(row);
-    }
-}
-
-function parseModalResponse(json){
-    for (var i = 0; i < json.items.length; i++){
-        $("#productImage").attr('src', json.items[i].largeImage);
-        $("#productIdValue").html(json.items[i].itemId);
-        $("#productDescriptionValue").html(json.items[i].shortDescription);
-        $("#productMSRPValue").html(json.items[i].bestMarketplacePrice.price);
-        $("#productPriceValue").html(json.items[i].salePrice);
-        $("#productAvailabilityValue").html(json.items[i].stock);
-        $('#modalLabel').text(json.items[i].name);
+        var row  = '<div class="col col-lg-3 col-md-4" >' +
+            '<div class="card" style="width: 16rem;">'+
+            `<img class="card-img-top" src="${imgURL}" alt="${name}" width="254" height="254">` +
+            '<div class="card-body">'+
+            `<h5 class="card-title">${name}</h5>`;
+        if(user.subscriptions.indexOf(itemId.toString()) >= 0) {
+          row += `<a href="#" class="btn btn-primary" id="${itemId}" item-status="subscribed" onclick="subscribeItem(this);">Remove Item</a>`;
+        } else {
+          row += `<a href="#" class="btn btn-primary" id="${itemId}" item-status="unsubscribed" onclick="subscribeItem(this);">Save Item</a>`;
+        }
+        row += '</div></div></div>';
+        $('.row').append(row);
     }
 }
 
@@ -147,26 +136,6 @@ function findItems (itemIds){
         url: url,
         dataType: "jsonp",
         jsonpCallback: "parseResponse",
-    });
-
-}
-
-function showModalItem (itemId){
-
-    // Walmart domain
-    var domain = 'https://api.walmartlabs.com/v1/items';
-
-    // API Key
-    var apiKey = 'jjntmj9urbkey38nbuy2kztk';
-
-    // API URL
-    var url = `${domain}?apiKey=${apiKey}&ids=${itemId}`;
-
-    // JSONP call to retrieve product details
-    $.ajax({
-        url: url,
-        dataType: "jsonp",
-        jsonpCallback: "parseModalResponse",
     });
 
 }
