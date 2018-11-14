@@ -75,7 +75,6 @@ function parseResponse(json){
     var stock = '';
     var name = '';
     var row = '';
-    $('.row').empty();
     row = '<div class="row">';
     for (var i = 0; i < json.items.length; i++){
         itemId = json.items[i].itemId;
