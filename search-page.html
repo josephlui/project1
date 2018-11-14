@@ -87,28 +87,28 @@
                     <div class="container-fluid">
                             <div class="row align-items-center">
                               <div class="col-lg-4">
-                                    <!-- hard code this for testing-->
-                                    <img src="https://i5.walmartimages.com/asr/a7bda75c-8a9b-4b8b-a596-33bdc026f1cc_1.ed584e2f7443484f63bccbacf8bd6587.png?odnHeight=450&odnWidth=450&odnBg=FFFFFF" alt="some text" width="254" height="254" />
-                                
+                              <!-- hard code this for testing-->
+                              <img id='productImage' src="" alt="some text" width="254" height="254" />
+
                               </div>
                               <div class="col-lg-8">
-                                  <h3>Product Name</h3>
-                                  <p>some text</p>
-                               
-                                  <h3>Description</h3>
-                                  <p>some text</p>
-                               
-                                  <h3>MSRP Price</h3>
-                                  <p>some text</p>
-                                  
-                                  <h3>Sale Price</h3>
-                                  <p>some text</p>
-                            
-                                  <h3>Availability</h3>
-                                  <p>some text</p>
+                                  <h3>Product Id</h3>
+                                  <p id='productIdValue'/><br/>
 
-                                  <h3>Some more detail</h3>
-                                  <p>some text</p>
+                                  <h3>Description</h3>
+                                  <p id='productDescriptionValue'/><br/>
+
+                                  <h3>MSRP Price</h3>
+                                  <p id='productMSRPValue'/><br/>
+
+                                  <h3>Sale Price</h3>
+                                  <p id='productPriceValue'/><br/>
+
+                                  <h3>Availability</h3>
+                                  <p id='productAvailabilityValue'/><br/>
+
+                                  <h3>Some more detail<h3>
+                                  <p id='productDetailValue'/><br/>
                                </div>
                             </div>
                     </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary modalTrack" data-item="item-ID1234">Track Item</button>
+              <button type="button" class="btn btn-primary modalTrack" data-item="item-ID1234">Save Item</button>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@
 
     <!--Overall Grid-->
     <div class="container gridContainer" >
-        <div class="row"/>
+        <div class="row" id='items'/>
     </div>
 
 </body>
