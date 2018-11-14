@@ -68,6 +68,9 @@ function subscribeItem(item) {
       while(user.subscriptions.indexOf(itemId) >= 0) {
         user.subscriptions.splice(user.subscriptions.indexOf(itemId), 1);
       }
+      if(window.location.href.includes('saved-page')) {
+        $(item).parent().parent().parent().remove();
+      }
     }
     var cleanEmail = user.email.replace(/\./g, ',').toLowerCase();
     database.ref(cleanEmail).set(user);
