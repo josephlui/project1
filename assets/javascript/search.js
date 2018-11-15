@@ -104,7 +104,7 @@ function parseResponse(json){
         $('#items').append(row);
 
         //If there has been a drop in price, the code below shoots an email
-        if (msrp > salePrice) {
+        if (msrp > salePrice && window.location.pathname.includes('saved-page')) {
             emailer(user["email"], row);
         }
 
@@ -201,5 +201,6 @@ function emailer(to_name, message_html) {
 
     var service_id = "tahreemsohailbutt@gmail.com";
     var template_id = "template_HXSdd43S";
+    //console.log("MEOWWW");
     emailjs.send(service_id, template_id, template_params);
 }
