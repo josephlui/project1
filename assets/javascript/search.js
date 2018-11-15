@@ -105,7 +105,8 @@ function parseResponse(json){
 
         //If there has been a drop in price, the code below shoots an email
         if (msrp > salePrice && window.location.pathname.includes('saved-page')) {
-                emailer(user["email"], row);
+
+            emailer(user["email"], row);
         }
     }
 }
@@ -189,6 +190,7 @@ function showModalItem (itemId, itemStatus){
     });
 
 }
+
 
 // Triggers the email api endpoint
 function emailer(to_name, message_html) {
