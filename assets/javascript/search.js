@@ -105,12 +105,13 @@ function parseResponse(json){
 
         //If there has been a drop in price, the code below shoots an email
         if (msrp > salePrice && window.location.pathname.includes('saved-page')) {
+
             emailer(user["email"], row);
         }
-
     }
 }
 
+// Callback function to interpret the JSON response from search api for the modal window
 function parseModalResponse(json){
     for (var i = 0; i < json.items.length; i++){
         $('#modalLabel').text(json.items[i].name);
@@ -144,6 +145,7 @@ function searchCatalog (category, overrideUrl){
 
 }
 
+// find items based on an array of items
 function findItems (itemIds){
 
     // Walmart domain
@@ -164,6 +166,7 @@ function findItems (itemIds){
 
 }
 
+// displays the modal window on image click
 function showModalItem (itemId, itemStatus){
     if(itemStatus==='unsubscribed') {
       $("#modalSave").html('Save Item');
@@ -189,6 +192,7 @@ function showModalItem (itemId, itemStatus){
 }
 
 
+// Triggers the email api endpoint
 function emailer(to_name, message_html) {
 
     emailjs.init("user_ITZhTZz79nrtiOTftjpPw");
