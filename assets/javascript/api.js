@@ -47,7 +47,9 @@ function retrieveUser(userEmail) {
         localStorage.setItem("user", JSON.stringify(existingUser));
         window.location.href = './search-page.html';
       } else {
-        alert("User Not Found");
+        $("#error").show();
+        $('#existingUserEmail').val('');
+        $('#newUserEmail').val('');
       }
     });
 

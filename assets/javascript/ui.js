@@ -1,5 +1,13 @@
 $( document ).ready(function() {
   
+  $('#existingUserEmail').keyup(function() {
+    $('#error').hide();
+  });
+
+  $('#newUserEmail').keyup(function() {
+    $('#error').hide();
+  });
+
 });
 
 
@@ -8,7 +16,3 @@ function renderItems(keyword){
   findItems();
 }
 
-//If the user email is registered, then redirect user to the search page
-function redirect() {
-
-}

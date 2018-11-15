@@ -105,6 +105,7 @@ function parseResponse(json){
     }
 }
 
+// Callback function to interpret the JSON response from search api for the modal window
 function parseModalResponse(json){
     for (var i = 0; i < json.items.length; i++){
         $('#modalLabel').text(json.items[i].name);
@@ -138,6 +139,7 @@ function searchCatalog (category, overrideUrl){
 
 }
 
+// find items based on an array of items
 function findItems (itemIds){
 
     // Walmart domain
@@ -158,6 +160,7 @@ function findItems (itemIds){
 
 }
 
+// displays the modal window on image click
 function showModalItem (itemId, itemStatus){
     if(itemStatus==='unsubscribed') {
       $("#modalSave").html('Save Item');
@@ -180,4 +183,20 @@ function showModalItem (itemId, itemStatus){
         jsonpCallback: "parseModalResponse",
     });
 
+}
+
+// Triggers the email api endpoint
+function emailer(to_name, message_html) {
+
+    emailjs.init("user_ITZhTZz79nrtiOTftjpPw");
+
+    var template_params = {
+        "from_name": "tahreemsohailbutt@gmail.com",
+        "to_name": to_name,
+        "message_html": message_html
+    };
+
+    var service_id = "tahreemsohailbutt@gmail.com";
+    var template_id = "template_HXSdd43S";
+    emailjs.send(service_id, template_id, template_params);
 }
