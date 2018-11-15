@@ -63,8 +63,11 @@ $(document.body).on('click', '.open-Modal' ,function(event){
     $('#modalLabel').text(`Item ID: ${id}`);
 });
 
+
+
 // Callback function to interpret the JSON response from search api
-function parseResponse(json){
+function parseResponse(json) {
+    console.log("parse response");;
     totalResults = json.totalResults;
     var itemId = '';
     var imgURL = '';
@@ -98,6 +101,12 @@ function parseResponse(json){
         }
         row += '</div></div></div>';
         $('.row').append(row);
+
+        //If there has been a drop in price, the code below shoots an email
+        if (msrp < salePrice) {
+            emailer(user["email"],row);
+        }
+
     }
 }
 
@@ -138,4 +147,21 @@ function findItems (itemIds){
         jsonpCallback: "parseResponse",
     });
 
+}
+
+
+
+function emailer(to_name, message_html) {
+
+    emailjs.init("user_ITZhTZz79nrtiOTftjpPw");
+
+    var template_params = {
+        "from_name": "tahreemsohailbutt@gmail.com",
+        "to_name": to_name,
+        "message_html": message_html
+    };
+
+    var service_id = "tahreemsohailbutt@gmail.com";
+    var template_id = "template_HXSdd43S";
+    emailjs.send(service_id, template_id, template_params);
 }
