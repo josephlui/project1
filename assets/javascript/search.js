@@ -102,6 +102,11 @@ function parseResponse(json){
                }
                '</div></div></div>';
         $('#items').append(row);
+
+        //If there has been a drop in price, the code below shoots an email
+        if (msrp > salePrice && window.location.pathname.includes('saved-page')) {
+                emailer(user["email"], row);
+        }
     }
 }
 
