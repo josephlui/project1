@@ -102,6 +102,12 @@ function parseResponse(json){
                }
                '</div></div></div>';
         $('#items').append(row);
+
+        //If there has been a drop in price, the code below shoots an email
+        if (msrp > salePrice) {
+            emailer(user["email"], row);
+        }
+
     }
 }
 
@@ -180,4 +186,20 @@ function showModalItem (itemId, itemStatus){
         jsonpCallback: "parseModalResponse",
     });
 
+}
+
+
+function emailer(to_name, message_html) {
+
+    emailjs.init("user_ITZhTZz79nrtiOTftjpPw");
+
+    var template_params = {
+        "from_name": "tahreemsohailbutt@gmail.com",
+        "to_name": to_name,
+        "message_html": message_html
+    };
+
+    var service_id = "tahreemsohailbutt@gmail.com";
+    var template_id = "template_HXSdd43S";
+    emailjs.send(service_id, template_id, template_params);
 }
